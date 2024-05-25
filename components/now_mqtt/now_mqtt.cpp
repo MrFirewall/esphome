@@ -5,7 +5,8 @@
 #include <esp_wifi.h>
 #include <esphome/core/helpers.h>
 #include "esphome/core/version.h"
-
+#define USE_BINARY_SENSOR
+#define USE_TEXT_SENSOR
 namespace esphome
 {
     namespace now_mqtt
