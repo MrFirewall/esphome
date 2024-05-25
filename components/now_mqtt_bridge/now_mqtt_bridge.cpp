@@ -94,6 +94,58 @@ namespace esphome
             }
             else
             {
+                if (strlen(tokens[3]) != 0)
+                {
+                    doc["name"] = tokens[3];
+                }
+                if (strlen(tokens[0]) != 0)
+                {
+                    std::string stat_t = tokens[0];
+                    stat_t += "/binary_sensor/";
+                    stat_t += tokens[3];
+                    stat_t += "/state";
+                    doc["stat_t"] = stat_t;
+                }
+                if (strlen(tokens[0]) != 0)
+                {
+                    std::string uniq_id = macStr;
+                    uniq_id += "_";
+                    uniq_id += tokens[3];
+                    doc["uniq_id"] = uniq_id;
+                }
+                dev = doc.createNestedObject("dev");
+                dev["ids"] = macStr;
+                if (strlen(tokens[0]) != 0)
+                {
+                    dev["name"] = tokens[0];
+                }
+                dev["sw"] = tokens[8];
+                dev["mdl"] = tokens[9];
+                dev["mf"] = "espressif";
+                serializeJson(doc, json);
+
+                // make and send the config topic
+                discovery_info = mqtt::global_mqtt_client->get_discovery_info();
+                memset(&topic, 0, sizeof(topic));
+                snprintf(topic, sizeof(topic), binary_config_topic, discovery_info.prefix.c_str(), tokens[0], tokens[3]);
+                mqtt::global_mqtt_client->publish(topic, json.c_str(), json.length(), 2, true);
+
+                // make and send the state topic
+                memset(&topic, 0, sizeof(topic));
+                snprintf(topic, sizeof(topic), binary_sensor_topic, tokens[0], tokens[3]);
+                mqtt::global_mqtt_client->publish(topic, tokens[5], strlen(tokens[5]), 2, true);
+
+
+
+
+
+
+
+
+
+
+
+
                 if (strlen(tokens[1]) != 0)
                 {
                     doc["dev_cla"] = tokens[1];
