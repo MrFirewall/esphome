@@ -3,8 +3,14 @@
 #include "esphome/core/component.h"
 #include "esphome/components/sensor/sensor.h"
 #include "esphome/core/automation.h"
-#include "esphome/components/binary_sensor/binary_sensor.h"
 
+#ifdef USE_BINARY_SENSOR
+#include "esphome/components/binary_sensor/binary_sensor.h"
+#endif
+
+#ifdef USE_TEXT_SENSOR
+#include "esphome/components/text_sensor/text_sensor.h"
+#endif
 
 namespace esphome
 {
@@ -23,8 +29,13 @@ namespace esphome
         private:
             CallbackManager<void(float)> callback_;
             CallbackManager<void(std::string)> callback_text_;
-            // void on_sensor_update(sensor::Sensor *obj, float state);
+            void on_sensor_update(sensor::Sensor *obj, float state);
+            #ifdef USE_BINARY_SENSOR
             void on_binary_sensor_update(binary_sensor::BinarySensor *obj, float state);
+            #endif
+            #ifdef USE_TEXT_SENSOR
+            void on_text_sensor_update(text_sensor::TextSensor *obj, std::string state);
+            #endif
         };
 
         class ESPNowSendTrigger : public Trigger<float>
