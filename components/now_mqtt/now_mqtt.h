@@ -3,6 +3,8 @@
 #include "esphome/core/component.h"
 #include "esphome/components/sensor/sensor.h"
 #include "esphome/core/automation.h"
+#define USE_BINARY_SENSOR
+#define USE_TEXT_SENSOR
 
 #ifdef USE_BINARY_SENSOR
 #include "esphome/components/binary_sensor/binary_sensor.h"
