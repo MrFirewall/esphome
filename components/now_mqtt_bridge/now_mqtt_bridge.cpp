@@ -40,16 +40,16 @@ namespace esphome
             split(tokens, &argc, received_string, ':', 1);
 
             // if we didn't get 11 elements, this wasn't a message from our sensors
-            if (argc != 11)
-            {
-                return;
-            }
+            //if (argc != 11)
+            //{
+              //  return;
+            //}
 
             ESP_LOGI(TAG, "line rcv: %s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s", tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9], tokens[10]);
 
             // check for binary_sensor or sensor
             message_type = tokens[2];
-            if (message_type.compare("binary_sensor"))
+            if (message_type.compare("binary_sensor") >= 0)
             {
                 if (strlen(tokens[3]) != 0)
                 {
