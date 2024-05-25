@@ -44,11 +44,11 @@ namespace esphome
                 return;
             }
 
-            // for (auto *obj : App.get_sensors())
-            // {
-            //     obj->add_on_state_callback([this, obj](float state)
-            //                                { this->on_sensor_update(obj, state); });
-            // }
+            for (auto *obj : App.get_sensors())
+            {
+                obj->add_on_state_callback([this, obj](float state)
+                                           { this->on_sensor_update(obj, state); });
+            }
 
             
             for (auto *obj : App.get_binary_sensors())
@@ -99,43 +99,43 @@ namespace esphome
             this->callback_.call(state);
         }
 
-        // void Now_MQTTComponent::on_sensor_update(sensor::Sensor *obj, float state)
-        // {
-        //     if (!obj->has_state())
-        //         return;
-        //     uint8_t serverAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-        //     std::string line;
-        //     int8_t accuracy = obj->get_accuracy_decimals();
+        void Now_MQTTComponent::on_sensor_update(sensor::Sensor *obj, float state)
+        {
+            if (!obj->has_state())
+                return;
+            uint8_t serverAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+            std::string line;
+            int8_t accuracy = obj->get_accuracy_decimals();
 
-        //     line = str_snake_case(App.get_name());
-        //     line += ":";
-        //     line += obj->get_device_class().c_str();
-        //     line += ":";
-        //     line += state_class_to_string(obj->get_state_class()).c_str();
-        //     line += ":";
-        //     line += str_snake_case(obj->get_name().c_str());
-        //     line += ":";
-        //     line += obj->get_unit_of_measurement().c_str();
-        //     line += ":";
-        //     line += value_accuracy_to_string(state, accuracy);
-        //     line += ":";
-        //     if (obj->get_icon().length() != 0)
-        //     {
-        //         line += obj->get_icon();
-        //     }
-        //     else
-        //     {
-        //         line += ":";
-        //     }
-        //     line += ":";
-        //     line += ESPHOME_VERSION;
-        //     line += ":";
-        //     line += ESPHOME_BOARD;
-        //     line += ":sensor:";
+            line = str_snake_case(App.get_name());
+            line += ":";
+            line += obj->get_device_class().c_str();
+            line += ":";
+            line += state_class_to_string(obj->get_state_class()).c_str();
+            line += ":";
+            line += str_snake_case(obj->get_name().c_str());
+            line += ":";
+            line += obj->get_unit_of_measurement().c_str();
+            line += ":";
+            line += value_accuracy_to_string(state, accuracy);
+            line += ":";
+            if (obj->get_icon().length() != 0)
+            {
+                line += obj->get_icon();
+            }
+            else
+            {
+                line += ":";
+            }
+            line += ":";
+            line += ESPHOME_VERSION;
+            line += ":";
+            line += ESPHOME_BOARD;
+            line += ":sensor:";
 
-        //     ESP_LOGI(TAG, "ESP-Now-MQTT Publish:  %s", line.c_str());
-        //     ESP_ERROR_CHECK(esp_now_send(serverAddress, reinterpret_cast<const uint8_t *>(&line[0]), line.size()));
-        //     this->callback_.call(state);
-        // }
+            ESP_LOGI(TAG, "ESP-Now-MQTT Publish:  %s", line.c_str());
+            ESP_ERROR_CHECK(esp_now_send(serverAddress, reinterpret_cast<const uint8_t *>(&line[0]), line.size()));
+            this->callback_.call(state);
+        }
     } // namespace now_mqtt
 } // namespace esphome
