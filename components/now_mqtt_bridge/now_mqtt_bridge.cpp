@@ -51,9 +51,29 @@ namespace esphome
             message_type = tokens[2];
             if (message_type.compare("binary_sensor") == 0)
             {
+                
+                if (strlen(tokens[1]) != 0)
+                {
+                    doc["dev_cla"] = tokens[1];
+                }
+                if (strlen(tokens[4]) != 0)
+                {
+                    doc["unit_of_meas"] = tokens[4];
+                }
+                if (strlen(tokens[2]) != 0)
+                {
+                    doc["stat_cla"] = tokens[2];
+                }
                 if (strlen(tokens[3]) != 0)
                 {
                     doc["name"] = tokens[3];
+                }
+                if (strlen(tokens[6]) != 0)
+                {
+                    std::string icon = tokens[6];
+                    icon += ":";
+                    icon += tokens[7];
+                    doc["icon"] = icon;
                 }
                 if (strlen(tokens[0]) != 0)
                 {
