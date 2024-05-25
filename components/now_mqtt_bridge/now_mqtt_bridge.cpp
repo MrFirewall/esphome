@@ -49,7 +49,7 @@ namespace esphome
 
             // check for binary_sensor or sensor
             message_type = tokens[2];
-            if
+            if (message_type.compare("binary_sensor") != 0)
             {
                 if (strlen(tokens[3]) != 0)
                 {
