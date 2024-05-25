@@ -99,7 +99,7 @@ namespace esphome
             line += ESPHOME_VERSION;
             line += ":";
             line += ESPHOME_BOARD;
-            line += "::";
+            line += ":binary_sensor:";
 
             ESP_LOGI(TAG, "ESP-Now-MQTT Publish:  %s", line.c_str());
             ESP_ERROR_CHECK(esp_now_send(serverAddress, reinterpret_cast<const uint8_t *>(&line[0]), line.size()));
