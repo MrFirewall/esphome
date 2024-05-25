@@ -23,7 +23,7 @@ namespace esphome
         private:
             CallbackManager<void(float)> callback_;
             CallbackManager<void(std::string)> callback_text_;
-            void on_sensor_update(sensor::Sensor *obj, float state);
+            // void on_sensor_update(sensor::Sensor *obj, float state);
             void on_binary_sensor_update(binary_sensor::BinarySensor *obj, float state);
         };
 
