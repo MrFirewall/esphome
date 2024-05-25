@@ -49,8 +49,7 @@ namespace esphome
 
             // check for binary_sensor or sensor
             message_type = tokens[2];
-            if (message_type.compare("sensor") == 0)
-            {
+
                 if (strlen(tokens[1]) != 0)
                 {
                     doc["dev_cla"] = tokens[1];
@@ -110,9 +109,7 @@ namespace esphome
                 memset(&topic, 0, sizeof(topic));
                 snprintf(topic, sizeof(topic), sensor_topic, tokens[0], tokens[3]);
                 mqtt::global_mqtt_client->publish(topic, tokens[5], strlen(tokens[5]), 2, true);
-            }
-            else
-            {
+
                 if (strlen(tokens[3]) != 0)
                 {
                     doc["name"] = tokens[3];
@@ -153,7 +150,7 @@ namespace esphome
                 memset(&topic, 0, sizeof(topic));
                 snprintf(topic, sizeof(topic), binary_sensor_topic, tokens[0], tokens[3]);
                 mqtt::global_mqtt_client->publish(topic, tokens[5], strlen(tokens[5]), 2, true);
-            }
+
 
             // create RSSI message
             json = "";
