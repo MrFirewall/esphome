@@ -44,11 +44,11 @@ namespace esphome
                 return;
             }
 
-            for (auto *obj : App.get_sensors())
-            {
-                obj->add_on_state_callback([this, obj](float state)
-                                           { this->on_sensor_update(obj, state); });
-            }
+            // for (auto *obj : App.get_sensors())
+            // {
+            //     obj->add_on_state_callback([this, obj](float state)
+            //                                { this->on_sensor_update(obj, state); });
+            // }
 
             
             for (auto *obj : App.get_binary_sensors())
