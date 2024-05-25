@@ -57,13 +57,6 @@ namespace esphome
                                            { this->on_binary_sensor_update(obj, state); });
             }
             
-
-            
-            for (auto *obj : App.get_text_sensors())
-            {
-                obj->add_on_state_callback([this, obj](std::string state)
-                                           { this->on_text_sensor_update(obj, state); });
-            }
             
         }
 
@@ -104,43 +97,6 @@ namespace esphome
             ESP_LOGI(TAG, "ESP-Now-MQTT Publish:  %s", line.c_str());
             ESP_ERROR_CHECK(esp_now_send(serverAddress, reinterpret_cast<const uint8_t *>(&line[0]), line.size()));
             this->callback_.call(state);
-        }
-
-        void Now_MQTTComponent::on_text_sensor_update(text_sensor::TextSensor *obj, std::string state)
-        {
-            if (!obj->has_state())
-                return;
-            uint8_t serverAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-            std::string line;
-
-            line = str_snake_case(App.get_name());
-            line += ":";
-            //line += obj->get_device_class().c_str();
-            line += ":";
-            //line += "sensor";
-            line += ":";
-            line += str_snake_case(obj->get_name().c_str());
-            line += ":";
-            line += ":";
-            line += state;
-            line += ":";
-            if (obj->get_icon().length() != 0)
-            {
-                line += obj->get_icon();
-            }
-            else
-            {
-                line += ":";
-            }
-            line += ":";
-            line += ESPHOME_VERSION;
-            line += ":";
-            line += ESPHOME_BOARD;
-            line += "::";
-
-            ESP_LOGI(TAG, "ESP-Now-MQTT Publish:  %s", line.c_str());
-            ESP_ERROR_CHECK(esp_now_send(serverAddress, reinterpret_cast<const uint8_t *>(&line[0]), line.size()));
-            this->callback_text_.call(state);
         }
 
         void Now_MQTTComponent::on_sensor_update(sensor::Sensor *obj, float state)

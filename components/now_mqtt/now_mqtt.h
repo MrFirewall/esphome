@@ -4,7 +4,6 @@
 #include "esphome/components/sensor/sensor.h"
 #include "esphome/core/automation.h"
 #include "esphome/components/binary_sensor/binary_sensor.h"
-#include "esphome/components/text_sensor/text_sensor.h"
 
 
 namespace esphome
@@ -26,7 +25,6 @@ namespace esphome
             CallbackManager<void(std::string)> callback_text_;
             void on_sensor_update(sensor::Sensor *obj, float state);
             void on_binary_sensor_update(binary_sensor::BinarySensor *obj, float state);
-            void on_text_sensor_update(text_sensor::TextSensor *obj, std::string state);
         };
 
         class ESPNowSendTrigger : public Trigger<float>
