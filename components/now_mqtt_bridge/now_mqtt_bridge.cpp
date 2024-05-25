@@ -92,7 +92,7 @@ namespace esphome
                 snprintf(topic, sizeof(topic), binary_sensor_topic, tokens[0], tokens[3]);
                 mqtt::global_mqtt_client->publish(topic, tokens[5], strlen(tokens[5]), 2, true);
             }
-            else
+            if()
             {
                 if (strlen(tokens[1]) != 0)
                 {
