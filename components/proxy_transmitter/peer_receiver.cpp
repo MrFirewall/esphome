@@ -184,7 +184,7 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "******* CYCLE COMPLETE");
         ESP_LOGD(TAG->get_tag(), "----------------------");
 
-        handle_received_proxy_message();
+        handle_received_proxy_message(esphome::proxy_base::proxy_message*);
 
         set_state(proxy_base::PS_READY);
 
