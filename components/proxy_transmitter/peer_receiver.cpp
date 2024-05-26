@@ -246,7 +246,7 @@ namespace esphome
       ESP_LOGD(TAG->get_tag(), "******* Going to deep sleep for %dms...", deep_sleep_length_);
       App.run_safe_shutdown_hooks();
 #if defined(USE_ESP32)
-      esp_sleep_enable_timer_wakeup(deep_sleep_length_ * 1000);
+      //esp_sleep_enable_timer_wakeup(deep_sleep_length_ * 1000);
       esp_deep_sleep_start();
 #endif
 #ifdef USE_ESP8266
