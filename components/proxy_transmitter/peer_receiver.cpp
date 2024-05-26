@@ -197,8 +197,7 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "----------------------");
         ESP_LOGD(TAG->get_tag(), "******* STATE REQUEST");
         ESP_LOGD(TAG->get_tag(), "----------------------");
-		start_sensor_reads();
-        set_state(proxy_base::PS_READING_SENSORS);
+		handle_received_proxy_message(proxy_base::proxy_message *message);
 		go_to_sleep();
 		}
 
