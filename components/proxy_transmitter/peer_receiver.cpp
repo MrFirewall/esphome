@@ -247,6 +247,7 @@ namespace esphome
       App.run_safe_shutdown_hooks();
 #if defined(USE_ESP32)
       //esp_sleep_enable_timer_wakeup(deep_sleep_length_ * 1000);
+	  esp_sleep_enable_ext0_wakeup(GPIO_NUM_27,1);
       esp_deep_sleep_start();
 #endif
 #ifdef USE_ESP8266
