@@ -193,7 +193,11 @@ namespace esphome
 		if (buttonState == 1) {
 			
 		} else {
-		 start_sensor_reads();
+        ESP_LOGD(TAG->get_tag(), "");
+        ESP_LOGD(TAG->get_tag(), "----------------------");
+        ESP_LOGD(TAG->get_tag(), "******* STATE REQUEST");
+        ESP_LOGD(TAG->get_tag(), "----------------------");
+		 peer_workflow_loop();
 		 go_to_sleep();
 		}
 
