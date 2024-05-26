@@ -228,7 +228,6 @@ namespace esphome
 			// Set state to awaiting PS_WAIT_SEND_STATE_ACK
 			set_state(proxy_base::PS_WAIT_SEND_STATE_ACK);
 
-			return;
 			go_to_sleep();
 		  }
 		
