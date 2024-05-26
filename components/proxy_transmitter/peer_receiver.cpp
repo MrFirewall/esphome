@@ -194,7 +194,7 @@ namespace esphome
 		SensorHolder *first_unsent = get_first_unsent_sensor();
 		 proxy_base::proxy_message msg;
         msg.message_type = proxy_base::MT_SEND_SENSOR_STATE;
-		msg.send_sensor_state.proxy_id = first_unsent->proxy_id;
+		msg.send_sensor_state.proxy_id = first_unsent->proxy_id, PROXY_ID_MAX_LENGTH - 1
         msg.send_sensor_state.state = first_unsent->state;
 		if (msg.send_sensor_state.proxy_id == "template_sensor" && msg.send_sensor_state.state == 1 ) {
 			
