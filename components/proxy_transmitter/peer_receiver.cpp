@@ -199,7 +199,6 @@ namespace esphome
 		}
 
 			set_state(proxy_base::PS_READY);
-			std::this_thread::sleep_for(1000ms);
 			return;
 		  }
 
