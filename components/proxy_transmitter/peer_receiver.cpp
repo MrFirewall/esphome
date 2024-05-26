@@ -191,10 +191,9 @@ namespace esphome
 		Serial.println(buttonState);
 		// check if the pushbutton is pressed.
 		// if it is, the buttonState is HIGH
-		if (buttonState == HIGH) {
-		  // turn LED on
-		  //digitalWrite(ledPin, HIGH);
-		} else {
+		if (buttonState == 1) {
+			
+		} else if (buttonState == 0) {
 		 go_to_sleep();
 		}
 
@@ -243,7 +242,7 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "******* Deep sleep disabled, will instead not do anything for %dms", FAKE_DEEP_SLEEP_TIME);
         return;
       }
-      ESP_LOGD(TAG->get_tag(), "******* Going to deep sleep for %dms...", deep_sleep_length_);
+      ESP_LOGD(TAG->get_tag(), "******* Going to deep sleep for %dms...");
       App.run_safe_shutdown_hooks();
 #if defined(USE_ESP32)
       //esp_sleep_enable_timer_wakeup(deep_sleep_length_ * 1000);
