@@ -7,6 +7,9 @@
 // Give up on ACKs after this log, and reset and try again
 #define RESPONSE_TIMEOUT 4000
 
+// If deep sleep is disabled (ie, deep sleep time is 0), instead dont do anything for this long
+#define FAKE_DEEP_SLEEP_TIME 1000
+
 // Give up on reading sensors after this long
 #define READ_SENSORS_TIMEOUT 10000
 
