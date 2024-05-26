@@ -15,11 +15,12 @@
 
 // Reboot into safe mode after this many timeouts waiting for checking ACK
 #define MAX_CHECKIN_RESPONSE_TIMEOUTS 8
-main:
+
 namespace esphome
 {
   namespace proxy_transmitter
   {
+	main:
     void PeerReceiver::handle_received_proxy_message(proxy_base::proxy_message *message)
     {
       if (get_state() == proxy_base::PS_WAIT_CHECKIN_ACK)
