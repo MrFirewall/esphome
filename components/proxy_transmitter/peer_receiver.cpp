@@ -128,6 +128,7 @@ namespace esphome
 
         if (!has_outstanding_reads)
         {
+		send:
           // Have finished reading, so now move on to sending states to receiver
           for (int i = 0; i < sensors_->size(); i++)
           {
@@ -197,7 +198,7 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "----------------------");
         ESP_LOGD(TAG->get_tag(), "******* STATE REQUEST");
         ESP_LOGD(TAG->get_tag(), "----------------------");
-		proxy_base::PS_WAIT_CHECKIN_ACK();
+		goto send;
 		go_to_sleep();
 		}
 
