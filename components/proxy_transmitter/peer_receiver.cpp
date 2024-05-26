@@ -191,6 +191,7 @@ namespace esphome
 		int buttonState = digitalRead(27);
 		// check if the pushbutton is pressed.
 		// if it is, the buttonState is HIGH
+		SensorHolder *first_unsent = get_first_unsent_sensor();
 		 proxy_base::proxy_message msg;
         msg.message_type = proxy_base::MT_SEND_SENSOR_STATE;
 		msg.send_sensor_state.proxy_id = first_unsent->proxy_id;
