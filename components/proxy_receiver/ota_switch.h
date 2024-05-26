@@ -22,6 +22,7 @@ namespace esphome
       void setup() override;
 
     public:
+      OTASwitchComponent();
       void set(bool state);
     };
 

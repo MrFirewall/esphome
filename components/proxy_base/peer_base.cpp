@@ -211,8 +211,22 @@ namespace esphome
       if (next_message->message_protocol_version != MESSAGE_PROTOCOL_VERSION)
       {
         ESP_LOGD(TAG->get_tag(), "!!!! ERROR Received message with protocol version %d but version %d was expected. This means the receiver and the transmitter are not running the same version of the ESP Proxy component. Ignoring.", next_message->message_protocol_version, MESSAGE_PROTOCOL_VERSION);
+        // The one time we want these to go through is an OTA request
+        bool allow_it = false;
+        if (next_message->message_type == MT_ACK_CHECKIN)
+        {
+          if (next_message->checkin_response.enter_ota_mode)
+          {
+            ESP_LOGD(TAG->get_tag(), "!!!! ALLOWING MESSAGE WITH INCORRECT PROTOCOL AS ITS AN OTA REQUEST");
+            allow_it=true;
+          }
+        }
+
+        if (!allow_it)
+        {
         free(next_message);
         return true; // Dont want to do any more processing with this peer on this loop
+        }
       }
 
       std::string desc;

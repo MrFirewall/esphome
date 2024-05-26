@@ -5,6 +5,12 @@ namespace esphome
 {
   namespace proxy_receiver
   {
+
+    OTASwitchComponent::OTASwitchComponent()
+    {
+      this->set_entity_category(ENTITY_CATEGORY_DIAGNOSTIC);
+    }
+
     void OTASwitchComponent::write_state(bool state)
     {
       _deviceSideState = state;

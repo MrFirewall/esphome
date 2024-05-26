@@ -5,8 +5,7 @@
 #include "esphome/core/application.h"
 
 // Give up on ACKs after this log, and reset and try again
-#define RESPONSE_TIMEOUT 20000
-
+#define RESPONSE_TIMEOUT 4000
 
 // Give up on reading sensors after this long
 #define READ_SENSORS_TIMEOUT 10000
@@ -15,7 +14,7 @@
 #define SENDING_STATE_TIMEOUT 8000
 
 // Reboot into safe mode after this many timeouts waiting for checking ACK
-#define MAX_CHECKIN_RESPONSE_TIMEOUTS 100
+#define MAX_CHECKIN_RESPONSE_TIMEOUTS 8
 
 namespace esphome
 {
@@ -74,7 +73,7 @@ namespace esphome
 
       if (get_state() == proxy_base::PS_READY)
       {
-  
+
         ESP_LOGD(TAG->get_tag(), "");
         ESP_LOGD(TAG->get_tag(), "----------------------");
         ESP_LOGD(TAG->get_tag(), "******* READY");

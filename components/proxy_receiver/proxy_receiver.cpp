@@ -22,7 +22,7 @@ namespace esphome
       switch_name->append(peer_transmitter->get_name());
       switch_name->append(" OTA Mode");
 
-      new_ota_switch->set_name(*switch_name);
+      new_ota_switch->set_name((*switch_name).c_str());
       App.register_switch(new_ota_switch);
       App.register_component(new_ota_switch);
 
