@@ -20,7 +20,7 @@ namespace esphome
 {
   namespace proxy_transmitter
   {
-	main:
+	start_code:
     void PeerReceiver::handle_received_proxy_message(proxy_base::proxy_message *message)
     {
       if (get_state() == proxy_base::PS_WAIT_CHECKIN_ACK)
@@ -185,7 +185,7 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "******* CYCLE COMPLETE");
         ESP_LOGD(TAG->get_tag(), "----------------------");
 
-        goto main;
+        goto start_code;
 
         set_state(proxy_base::PS_READY);
 
