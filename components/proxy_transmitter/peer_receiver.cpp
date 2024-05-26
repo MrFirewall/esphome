@@ -184,11 +184,21 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "******* CYCLE COMPLETE");
         ESP_LOGD(TAG->get_tag(), "----------------------");
 
+		buttonState = digitalRead(27);
+		Serial.println(buttonState);
+		// check if the pushbutton is pressed.
+		// if it is, the buttonState is HIGH
+		if (buttonState == HIGH) {
+		  // turn LED on
+		  //digitalWrite(ledPin, HIGH);
+		} else {
+		 go_to_sleep();
+		}
 
-        set_state(proxy_base::PS_READY);
-
-        return;
-      }
+			set_state(proxy_base::PS_READY);
+			std::this_thread::sleep_for(1000ms);
+			return;
+		  }
 
       ESP_LOGD(TAG->get_tag(), "Unexpected state in loop - %d ", get_state());
     }
@@ -223,6 +233,22 @@ namespace esphome
       App.safe_reboot();
       ESP_LOGD(TAG->get_tag(), "******* Reboot commamnd sent...");
     }
-
+	void PeerReceiver::go_to_sleep()
+    {
+      if (deep_sleep_length_ == 0)
+      {
+        ESP_LOGD(TAG->get_tag(), "******* Deep sleep disabled, will instead not do anything for %dms", FAKE_DEEP_SLEEP_TIME);
+        return;
+      }
+      ESP_LOGD(TAG->get_tag(), "******* Going to deep sleep for %dms...", deep_sleep_length_);
+      App.run_safe_shutdown_hooks();
+#if defined(USE_ESP32)
+      esp_sleep_enable_timer_wakeup(deep_sleep_length_ * 1000);
+      esp_deep_sleep_start();
+#endif
+#ifdef USE_ESP8266
+      ESP.deepSleep(deep_sleep_length_ * 1000); // todo: check the '266 also uses microseconds
+#endif
+    }
   } // namespace proxy_receiver
 } // namespace esphome
