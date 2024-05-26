@@ -184,7 +184,7 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "******* CYCLE COMPLETE");
         ESP_LOGD(TAG->get_tag(), "----------------------");
 
-		buttonState = digitalRead(27);
+		int buttonState = digitalRead(27);
 		Serial.println(buttonState);
 		// check if the pushbutton is pressed.
 		// if it is, the buttonState is HIGH
