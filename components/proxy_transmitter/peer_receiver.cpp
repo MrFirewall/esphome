@@ -191,40 +191,14 @@ namespace esphome
 		int buttonState = digitalRead(27);
 		// check if the pushbutton is pressed.
 		// if it is, the buttonState is HIGH
-		if (buttonState == 1) {
+		if (proxy_base::MT_SEND_SENSOR_STATE {state == 1 && proxy_id == "template_sensor"} ) {
 			
 		} else {
 		  ESP_LOGD(TAG->get_tag(), "");
 		  ESP_LOGD(TAG->get_tag(), "----------------------");
 		  ESP_LOGD(TAG->get_tag(), "******* STATE REQUEST");
 		  ESP_LOGD(TAG->get_tag(), "----------------------");
-		if (time_since_last_state_change_ms > SENDING_STATE_TIMEOUT)
-			{
-			  reset_state("Timeout sending states");
-			}
-
-			SensorHolder *first_unsent = get_first_unsent_sensor();
-			if (first_unsent == NULL)
-			{
-			  reset_state("In PS_SENDING_STATES but nothing left to send.");
-			  return;
-			}
-
-			// Want to send a checkin
-			proxy_base::proxy_message msg;
-			msg.message_type = proxy_base::MT_SEND_SENSOR_STATE;
-
-			// Zero out peoxy_id
-			for (int i = 0; i < PROXY_ID_MAX_LENGTH; i++)
-			{
-			  msg.send_sensor_state.proxy_id[i] = 0;
-			}
-			memcpy(msg.send_sensor_state.proxy_id, first_unsent->proxy_id, PROXY_ID_MAX_LENGTH - 1);
-			msg.send_sensor_state.state = first_unsent->state;
-			send_proxy_message(&msg);
-
-			// Set state to awaiting PS_WAIT_SEND_STATE_ACK
-			set_state(proxy_base::PS_WAIT_SEND_STATE_ACK);
+		
 		  go_to_sleep();
 		
 		}
