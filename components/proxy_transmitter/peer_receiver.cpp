@@ -191,14 +191,17 @@ namespace esphome
 		int buttonState = digitalRead(27);
 		// check if the pushbutton is pressed.
 		// if it is, the buttonState is HIGH
-		if (first_unsent->state == 1 && first_unsent->proxy_id == "template_sensor"} ) {
+		 proxy_base::proxy_message msg;
+        msg.message_type = proxy_base::MT_SEND_SENSOR_STATE;
+		msg.send_sensor_state.proxy_id = first_unsent->proxy_id;
+        msg.send_sensor_state.state = first_unsent->state;
+		if (msg.send_sensor_state.proxy_id == "template_sensor" && msg.send_sensor_state.state == 1 ) {
 			
 		} else {
 		  ESP_LOGD(TAG->get_tag(), "");
 		  ESP_LOGD(TAG->get_tag(), "----------------------");
 		  ESP_LOGD(TAG->get_tag(), "******* STATE REQUEST");
 		  ESP_LOGD(TAG->get_tag(), "----------------------");
-		
 		  go_to_sleep();
 		
 		}
