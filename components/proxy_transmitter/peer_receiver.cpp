@@ -188,12 +188,12 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "----------------------");
 
 		int buttonState = digitalRead(27);
-		Serial.println(buttonState);
 		// check if the pushbutton is pressed.
 		// if it is, the buttonState is HIGH
 		if (buttonState == 1) {
 			
-		} else if (buttonState == 0) {
+		} else {
+		 start_sensor_reads();
 		 go_to_sleep();
 		}
 
@@ -245,6 +245,7 @@ namespace esphome
       ESP_LOGD(TAG->get_tag(), "******* Going to deep sleep for %dms...");
       App.run_safe_shutdown_hooks();
 #if defined(USE_ESP32)
+	
       //esp_sleep_enable_timer_wakeup(deep_sleep_length_ * 1000);
 	  esp_sleep_enable_ext0_wakeup(GPIO_NUM_27,1);
       esp_deep_sleep_start();
