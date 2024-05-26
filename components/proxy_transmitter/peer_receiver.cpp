@@ -15,7 +15,7 @@
 
 // Reboot into safe mode after this many timeouts waiting for checking ACK
 #define MAX_CHECKIN_RESPONSE_TIMEOUTS 8
-
+main:
 namespace esphome
 {
   namespace proxy_transmitter
@@ -184,7 +184,7 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "******* CYCLE COMPLETE");
         ESP_LOGD(TAG->get_tag(), "----------------------");
 
-        peer_workflow_loop();
+        goto main;
 
         set_state(proxy_base::PS_READY);
 
