@@ -202,6 +202,7 @@ namespace esphome
           start_sensor_reads();
           set_state(proxy_base::PS_READING_SENSORS);		  
           set_state(proxy_base::PS_WAIT_SEND_STATE_ACK);
+		  get_state() == proxy_base::PS_COMPLETE
 		  go_to_sleep();
 		
 		}
