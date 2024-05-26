@@ -192,7 +192,7 @@ namespace esphome
 		// check if the pushbutton is pressed.
 		// if it is, the buttonState is HIGH
 		if (buttonState == 1) {
-			
+			delay(1000);
 		} else {
 		  go_to_sleep();
 		
