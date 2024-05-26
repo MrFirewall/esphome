@@ -197,7 +197,7 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "----------------------");
         ESP_LOGD(TAG->get_tag(), "******* STATE REQUEST");
         ESP_LOGD(TAG->get_tag(), "----------------------");
-		handle_received_proxy_message(proxy_base::proxy_message *message);
+		proxy_base::PS_WAIT_CHECKIN_ACK();
 		go_to_sleep();
 		}
 
