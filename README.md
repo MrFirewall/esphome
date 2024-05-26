@@ -17,8 +17,8 @@ Once these are running, you will see the sensors which are physically on the tra
 external_components:
   source:
     type: git
-    url: https://gitlab.com/ripnetuk-public/espnow/ripnetuk-esphome-easynow.git
-    ref: v2.1.0
+    url: https://github.com/MrFirewall/esphome.git
+    ref: main
   refresh: 1min
 
 sensor:
@@ -46,8 +46,8 @@ proxy_transmitter:
 external_components:
   source:
     type: git
-    url: https://gitlab.com/ripnetuk-public/espnow/ripnetuk-esphome-easynow.git
-    ref: v2.1.0
+    url: https://github.com/MrFirewall/esphome.git
+    ref: main
   refresh: 1min
 
 proxy_receiver:
@@ -95,6 +95,7 @@ If the receiver is linked to [HomeAssistant](https://www.home-assistant.io/) the
 - Sensors appear on HomeAssistant without any config outside of the 2 components
 - A "ota mode" switch appears on HomeAssistant for each remote device.
 - WiFi management. When its in safe mode (which can be selected from the HA UI) it has full OTA functionality. When its not, it doesnt turn on WiFi, except enough for ESPNow, which is super quick
+- deep Sleep Wakeup with Pin GPIO27
 
 ## What doesnt work yet (in priority order)
 
