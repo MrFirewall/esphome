@@ -187,7 +187,7 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "----------------------");
         ESP_LOGD(TAG->get_tag(), "******* CYCLE COMPLETE");
         ESP_LOGD(TAG->get_tag(), "----------------------");
-		counter = 0;
+		int counter = 0;
 		int buttonState = digitalRead(27);
 		// check if the pushbutton is pressed.
 		// if it is, the buttonState is HIGH
@@ -195,7 +195,11 @@ namespace esphome
 			delay(1000);
 		} else {
 			if (counter == 0 ){
-				counter = counter + 1;
+				counter = counter++;
+				ESP_LOGD(TAG->get_tag(), "");
+			        ESP_LOGD(TAG->get_tag(), "----------------------");
+			        ESP_LOGD(TAG->get_tag(), counter);
+			        ESP_LOGD(TAG->get_tag(), "----------------------");
 			}else {
 				go_to_sleep();
 			}		
