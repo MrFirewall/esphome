@@ -1,5 +1,8 @@
 # Easynow - an ESPHome component to make sensor proxying via ESPNow easy in ESPHome.
 
+## A modified version for a motion detector
+## Individuality may be added later
+
 ## Example Config Files
 If you have a pair of ESP32s and are running ESPHome you can try this right away thanks to ESPHome's ability to pull external components from a git repo.
 
@@ -129,7 +132,7 @@ This project is released under the MIT License.
 - When it wakes up, it starts the cycle again
 ## Version History
 ### 1.0.0
-- ###
+- Added a counter for deep sleep to make sure that the GPIO27 pin is really LOW/0
 
 
 
