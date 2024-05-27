@@ -198,7 +198,7 @@ namespace esphome
 				counter = counter++;
 				ESP_LOGD(TAG->get_tag(), "");
 			        ESP_LOGD(TAG->get_tag(), "----------------------");
-			        ESP_LOGD(TAG->get_tag(), counter);
+			        ESP_LOGD(TAG->get_tag(), int counter);
 			        ESP_LOGD(TAG->get_tag(), "----------------------");
 			}else {
 				go_to_sleep();
