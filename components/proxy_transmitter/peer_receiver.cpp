@@ -187,15 +187,18 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "----------------------");
         ESP_LOGD(TAG->get_tag(), "******* CYCLE COMPLETE");
         ESP_LOGD(TAG->get_tag(), "----------------------");
-
+		int counter = 0;
 		int buttonState = digitalRead(27);
 		// check if the pushbutton is pressed.
 		// if it is, the buttonState is HIGH
 		if (buttonState == 1) {
 			delay(1000);
 		} else {
-		  go_to_sleep();
-		
+			if (counter == 0 ){
+				counter = counter + 1
+			}else {
+				go_to_sleep();
+			}		
 		}
 
 			set_state(proxy_base::PS_READY);
