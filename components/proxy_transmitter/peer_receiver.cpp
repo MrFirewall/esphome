@@ -199,7 +199,7 @@ namespace esphome
 			delay(1000);
 		} else {
 			if (counter == 0 ){
-				counter = counter++;
+				int counter=counter++;
 				ESP_LOGD(TAG->get_tag(), "");
 			        ESP_LOGD(TAG->get_tag(), "----------------------");
 				ESP_LOGD(TAG->get_tag(), "%d", counter);
