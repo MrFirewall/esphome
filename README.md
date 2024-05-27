@@ -1,6 +1,6 @@
 # Easynow - an ESPHome component to make sensor proxying via ESPNow easy in ESPHome.
 
-## A modified version for a motion detector
+# A modified version for a motion detector
 ## Individuality may be added later
 
 ## Example Config Files
