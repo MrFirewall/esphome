@@ -18,7 +18,7 @@
 
 // Reboot into safe mode after this many timeouts waiting for checking ACK
 #define MAX_CHECKIN_RESPONSE_TIMEOUTS 8
-
+int counter = 0;
 namespace esphome
 {
   namespace proxy_transmitter
@@ -68,7 +68,7 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "Unexpected message type %d when in state %d", message->message_type, get_state());
       }
     }
-
+    
     void PeerReceiver::peer_workflow_loop()
     {
 
@@ -187,7 +187,11 @@ namespace esphome
         ESP_LOGD(TAG->get_tag(), "----------------------");
         ESP_LOGD(TAG->get_tag(), "******* CYCLE COMPLETE");
         ESP_LOGD(TAG->get_tag(), "----------------------");
-		int counter = 0;
+	ESP_LOGD(TAG->get_tag(), "");
+	ESP_LOGD(TAG->get_tag(), "----------------------");
+	ESP_LOGD(TAG->get_tag(), "%d", counter);
+	ESP_LOGD(TAG->get_tag(), "----------------------");
+	      
 		int buttonState = digitalRead(27);
 		// check if the pushbutton is pressed.
 		// if it is, the buttonState is HIGH
