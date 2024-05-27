@@ -195,7 +195,7 @@ namespace esphome
 			delay(1000);
 		} else {
 			if (counter == 0 ){
-				counter = counter + 1
+				counter = counter + 1;
 			}else {
 				go_to_sleep();
 			}		
